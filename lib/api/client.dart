@@ -9,7 +9,7 @@ class ApiClient {
 
   Future<List<Asset>> getAssets() async {
     final response = await dio.get(
-      'https://rest.coincap.io/v3/assets?apiKey=$kApikey',
+      'https://rest.coincap.io/v3/assets?apiKey=$kApikey&limit=15',
     );
     final assetsJson = response.data['data'] as List<dynamic>;
     final assets = assetsJson

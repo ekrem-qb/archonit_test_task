@@ -19,13 +19,13 @@ class _MainAppState extends State<MainApp> {
   late final assetsFuture = apiClient.getAssets();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return CupertinoApp(
-      theme: CupertinoThemeData(brightness: Brightness.light),
+      theme: const CupertinoThemeData(brightness: Brightness.light),
       home: CupertinoPageScaffold(
         child: FutureBuilder(
           future: assetsFuture,
-          builder: (context, snapshot) {
+          builder: (final context, final snapshot) {
             if (snapshot.hasError) {
               return Center(child: Text(snapshot.error.toString()));
             }
@@ -36,8 +36,8 @@ class _MainAppState extends State<MainApp> {
 
               return ListView.builder(
                 itemCount: assets.length,
-                itemBuilder: (context, index) {
-                  var asset = assets[index];
+                itemBuilder: (final context, final index) {
+                  final asset = assets[index];
                   return Padding(
                     padding: const EdgeInsets.all(14),
                     child: Row(
@@ -49,14 +49,14 @@ class _MainAppState extends State<MainApp> {
                               color: Colors.red,
                               borderRadius: BorderRadius.circular(18),
                             ),
-                            child: SizedBox.square(dimension: 56),
+                            child: const SizedBox.square(dimension: 56),
                           ),
                         ),
                         Expanded(
                           child: Padding(
                             padding: const EdgeInsets.all(16),
                             child: DefaultTextStyle(
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontFamily: 'SF Pro Text',
                                 fontSize: 17,
                                 fontWeight: FontWeight.w600,

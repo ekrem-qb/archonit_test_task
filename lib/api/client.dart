@@ -13,7 +13,7 @@ class ApiClient {
     );
     final assetsJson = response.data['data'] as List<dynamic>;
     final assets = assetsJson
-        .map((json) => Asset.fromJson(json as Map<String, dynamic>))
+        .map((final json) => Asset.fromJson(json as Map<String, dynamic>))
         .toList();
     return assets;
   }

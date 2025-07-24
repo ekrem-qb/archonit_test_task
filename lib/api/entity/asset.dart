@@ -11,21 +11,26 @@ class Asset {
   final String symbol;
   final String priceUsd;
 
-  Asset copyWith({String? id, String? rank, String? symbol, String? priceUsd}) {
-    return Asset(
-      id: id ?? this.id,
-      rank: rank ?? this.rank,
-      symbol: symbol ?? this.symbol,
-      priceUsd: priceUsd ?? this.priceUsd,
-    );
-  }
-
-  factory Asset.fromJson(Map<String, dynamic> json) {
+  factory Asset.fromJson(final Map<String, dynamic> json) {
     return Asset(
       id: json['id'],
       rank: json['rank'],
       symbol: json['symbol'],
       priceUsd: json['priceUsd'],
+    );
+  }
+
+  Asset copyWith({
+    final String? id,
+    final String? rank,
+    final String? symbol,
+    final String? priceUsd,
+  }) {
+    return Asset(
+      id: id ?? this.id,
+      rank: rank ?? this.rank,
+      symbol: symbol ?? this.symbol,
+      priceUsd: priceUsd ?? this.priceUsd,
     );
   }
 
@@ -39,7 +44,7 @@ class Asset {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(final Object other) {
     if (identical(this, other)) return true;
 
     return other is Asset &&

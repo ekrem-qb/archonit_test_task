@@ -1,4 +1,6 @@
 import 'package:archonit_test_task/api/client.dart';
+import 'package:archonit_test_task/consts.dart';
+import 'package:currency_formatter/currency_formatter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +70,12 @@ class _MainAppState extends State<MainApp> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(asset.symbol),
-                                  Text(asset.priceUsd),
+                                  Text(
+                                    CurrencyFormatter.format(
+                                      asset.priceUsd,
+                                      kCurrencyFormat,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

@@ -1,9 +1,9 @@
-import 'package:archonit_test_task/api/client.dart';
-import 'package:archonit_test_task/consts.dart';
-import 'package:currency_formatter/currency_formatter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '/api/client.dart';
+import '/ui/home_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -17,78 +17,21 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
-  final apiClient = ApiClient(Dio());
-  late final assetsFuture = apiClient.getAssets();
+  final dio = Dio();
+
+  @override
+  void dispose() {
+    dio.close();
+    super.dispose();
+  }
 
   @override
   Widget build(final BuildContext context) {
     return CupertinoApp(
       theme: const CupertinoThemeData(brightness: Brightness.light),
-      home: CupertinoPageScaffold(
-        child: FutureBuilder(
-          future: assetsFuture,
-          builder: (final context, final snapshot) {
-            if (snapshot.hasError) {
-              return Center(child: Text(snapshot.error.toString()));
-            }
-            if (!snapshot.hasData) {
-              return const Center(child: CupertinoActivityIndicator());
-            } else {
-              final assets = snapshot.data!;
-
-              return ListView.builder(
-                itemCount: assets.length,
-                itemBuilder: (final context, final index) {
-                  final asset = assets[index];
-                  return Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: Row(
-                      children: [
-                        Opacity(
-                          opacity: 0.1,
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            child: const SizedBox.square(dimension: 56),
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: DefaultTextStyle(
-                              style: const TextStyle(
-                                fontFamily: 'SF Pro Text',
-                                fontSize: 17,
-                                fontWeight: FontWeight.w600,
-                                letterSpacing: -0.41,
-                                color: Color(0xFF17171A),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(asset.symbol),
-                                  Text(
-                                    CurrencyFormatter.format(
-                                      asset.priceUsd,
-                                      kCurrencyFormat,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              );
-            }
-          },
-        ),
+      home: Provider(
+        create: (final context) => ApiClient(dio),
+        child: const HomePage(),
       ),
     );
   }

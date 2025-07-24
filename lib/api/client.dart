@@ -1,6 +1,7 @@
-import 'package:archonit_test_task/api/entity/asset.dart';
-import 'package:archonit_test_task/consts.dart';
 import 'package:dio/dio.dart';
+
+import '/api/entity/asset.dart';
+import '/consts.dart';
 
 class ApiClient {
   ApiClient(this.dio);
@@ -9,7 +10,7 @@ class ApiClient {
 
   Future<List<Asset>> getAssets() async {
     final response = await dio.get(
-      'https://rest.coincap.io/v3/assets?apiKey=$kApikey&limit=15',
+      'https://rest.coincap.io/v3/assets?apiKey=$kApiKey&limit=15',
     );
     final assetsJson = response.data['data'] as List<dynamic>;
     final assets = assetsJson

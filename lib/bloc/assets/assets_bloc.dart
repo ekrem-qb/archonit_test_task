@@ -30,8 +30,31 @@ class AssetsBloc extends Bloc<AssetsEvent, AssetsState> {
     final Emitter<AssetsState> emit,
   ) async {
     try {
-      final assets = await _apiClient.getAssets();
-      emit(state.copyWith(assets: Success(assets)));
+      final newAssets = await _apiClient.getAssets(
+        limit: event.limit,
+        offset: event.offset,
+      );
+
+      if (event.offset != null) {
+        if (state.assets case Success(data: final assets)) {
+          // If the new assets are less than the limit,
+          // we can assume that we reached the end of the list.
+          final newTotalCount = newAssets.length < event.limit
+              ? assets.length + newAssets.length
+              : null;
+
+          emit(
+            state.copyWith(
+              assets: Success(assets + newAssets),
+              totalCount: newTotalCount,
+            ),
+          );
+        } else {
+          emit(state.copyWith(assets: Success(newAssets)));
+        }
+      } else {
+        emit(state.copyWith(assets: Success(newAssets)));
+      }
     } on Exception catch (error) {
       emit(state.copyWith(assets: Error(error)));
     } catch (error) {

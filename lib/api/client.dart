@@ -8,11 +8,14 @@ class ApiClient {
 
   final Dio dio;
 
-  Future<List<Asset>> getAssets() async {
-    final response = await dio.get(
-      'https://rest.coincap.io/v3/assets?apiKey=$kApiKey&limit=15',
+  Future<List<Asset>> getAssets({
+    required final int limit,
+    final int? offset,
+  }) async {
+    final response = await dio.get<Map<String, dynamic>>(
+      'https://rest.coincap.io/v3/assets?apiKey=$kApiKey&limit=$limit${offset != null ? '&offset=$offset' : ''}',
     );
-    final assetsJson = response.data['data'] as List<dynamic>;
+    final assetsJson = response.data?['data'] as List<dynamic>;
     final assets = assetsJson
         .map((final json) => Asset.fromJson(json as Map<String, dynamic>))
         .toList();

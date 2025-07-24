@@ -9,7 +9,7 @@ sealed class Asset with _$Asset {
     required final String id,
     required final String rank,
     required final String symbol,
-    required final String priceUsd,
+    required final String? priceUsd,
   }) = _Asset;
 
   factory Asset.fromJson(final Map<String, dynamic> json) =>

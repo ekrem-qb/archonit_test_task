@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '/api/client.dart';
-import '/bloc/assets/assets_bloc.dart';
 import 'ui/pages/home_page.dart';
 
 void main() {
@@ -30,14 +29,9 @@ class _MainAppState extends State<MainApp> {
   Widget build(final BuildContext context) {
     return RepositoryProvider(
       create: (final context) => ApiClient(dio),
-      child: CupertinoApp(
-        theme: const CupertinoThemeData(brightness: Brightness.light),
-        home: BlocProvider(
-          create: (final context) =>
-              AssetsBloc(apiClient: context.read())
-                ..add(const AssetsEventLoadRequested()),
-          child: const HomePage(),
-        ),
+      child: const CupertinoApp(
+        theme: CupertinoThemeData(brightness: Brightness.light),
+        home: HomePage(),
       ),
     );
   }

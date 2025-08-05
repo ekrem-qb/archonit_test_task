@@ -1,6 +1,6 @@
 import 'package:currency_formatter/currency_formatter.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '/bloc/assets/assets_bloc.dart';
 import '/consts.dart';

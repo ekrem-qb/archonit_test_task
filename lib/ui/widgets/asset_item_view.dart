@@ -35,17 +35,7 @@ class AssetItemView extends StatelessWidget {
       padding: const EdgeInsets.all(14),
       child: Row(
         children: [
-          SizedBox.square(
-            dimension: 56,
-            child: asset != null
-                ? DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: asset.color,
-                      borderRadius: BorderRadius.circular(18),
-                    ),
-                  )
-                : const CupertinoActivityIndicator(),
-          ),
+          _Icon(asset?.color),
           if (asset != null)
             Expanded(
               child: Padding(
@@ -75,6 +65,27 @@ class AssetItemView extends StatelessWidget {
             ),
         ],
       ),
+    );
+  }
+}
+
+class _Icon extends StatelessWidget {
+  const _Icon(this.color);
+
+  final Color? color;
+
+  @override
+  Widget build(final BuildContext context) {
+    return SizedBox.square(
+      dimension: 56,
+      child: color != null
+          ? DecoratedBox(
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.circular(18),
+              ),
+            )
+          : const CupertinoActivityIndicator(),
     );
   }
 }

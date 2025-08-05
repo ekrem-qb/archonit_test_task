@@ -7,19 +7,8 @@ import '/consts.dart';
 import '/ui/asset_color.dart';
 import '/utils/result.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(final BuildContext context) {
-    return const CupertinoPageScaffold(
-      child: _List(),
-    );
-  }
-}
-
-class _List extends StatelessWidget {
-  const _List();
+class AssetsList extends StatelessWidget {
+  const AssetsList({super.key});
 
   @override
   Widget build(final BuildContext context) {

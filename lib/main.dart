@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '/api/client.dart';
 import '/bloc/assets/assets_bloc.dart';
-import '/ui/home_page.dart';
+import 'ui/pages/home_page.dart';
 
 void main() {
   runApp(const MainApp());

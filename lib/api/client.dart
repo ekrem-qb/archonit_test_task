@@ -13,7 +13,12 @@ class ApiClient {
     final int? offset,
   }) async {
     final response = await dio.get<Map<String, dynamic>>(
-      '${kBaseUrl}assets?apiKey=$kApiKey&limit=$limit${offset != null ? '&offset=$offset' : ''}',
+      '${kBaseUrl}assets',
+      queryParameters: {
+        'apiKey': kApiKey,
+        'limit': limit,
+        'offset': ?offset,
+      },
     );
     final assetsJson = response.data?['data'] as List<dynamic>;
     final assets = assetsJson

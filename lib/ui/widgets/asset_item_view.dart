@@ -77,12 +77,12 @@ class _Icon extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return SizedBox.square(
-      dimension: 56,
+      dimension: kAssetIconSize,
       child: color != null
           ? DecoratedBox(
               decoration: BoxDecoration(
                 color: color,
-                borderRadius: BorderRadius.circular(18),
+                borderRadius: kAssetIconBorderRadius,
               ),
             )
           : const CupertinoActivityIndicator(),

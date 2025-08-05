@@ -16,3 +16,10 @@ const BorderRadius kAssetIconBorderRadius = BorderRadius.all(
   Radius.circular(18),
 );
 const double kAssetIconSize = 56;
+const TextStyle kAssetTextStyle = TextStyle(
+  fontFamily: 'SF Pro Text',
+  fontSize: 17,
+  fontWeight: FontWeight.w600,
+  letterSpacing: -0.41,
+  color: Color(0xFF17171A),
+);

@@ -41,13 +41,7 @@ class AssetItemView extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: DefaultTextStyle(
-                  style: const TextStyle(
-                    fontFamily: 'SF Pro Text',
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: -0.41,
-                    color: Color(0xFF17171A),
-                  ),
+                  style: kAssetTextStyle,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

@@ -13,7 +13,7 @@ class ApiClient {
     final int? offset,
   }) async {
     final response = await dio.get<Map<String, dynamic>>(
-      'https://rest.coincap.io/v3/assets?apiKey=$kApiKey&limit=$limit${offset != null ? '&offset=$offset' : ''}',
+      '${kBaseUrl}assets?apiKey=$kApiKey&limit=$limit${offset != null ? '&offset=$offset' : ''}',
     );
     final assetsJson = response.data?['data'] as List<dynamic>;
     final assets = assetsJson

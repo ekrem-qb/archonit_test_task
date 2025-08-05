@@ -3,6 +3,8 @@ include: package:flutter_lints/flutter.yaml
 analyzer:
   exclude:
     - "**/*.*.dart"
+  errors:
+    avoid_catches_without_on_clauses: ignore
 
 formatter:
   trailing_commas: preserve

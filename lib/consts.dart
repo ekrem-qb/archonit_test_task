@@ -9,3 +9,5 @@ const CurrencyFormat kCurrencyFormat = CurrencyFormat(
   symbol: r'$',
   symbolSeparator: '',
 );
+
+const double kAssetColorOpacity = .1;

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '/bloc/assets/assets_bloc.dart';
 import '/consts.dart';
+import '/ui/asset_color.dart';
 import '/utils/result.dart';
 
 class HomePage extends StatelessWidget {
@@ -81,13 +82,10 @@ class _Item extends StatelessWidget {
           SizedBox.square(
             dimension: 56,
             child: asset != null
-                ? Opacity(
-                    opacity: 0.1,
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: CupertinoColors.systemRed,
-                        borderRadius: BorderRadius.circular(18),
-                      ),
+                ? DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: asset.color,
+                      borderRadius: BorderRadius.circular(18),
                     ),
                   )
                 : const CupertinoActivityIndicator(),
